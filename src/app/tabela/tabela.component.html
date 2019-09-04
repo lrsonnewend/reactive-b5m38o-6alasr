@@ -1,0 +1,4 @@
+<div *ngIf="s.lista.length == 0">Lista vazia</div>
+<ol>
+  <li *ngFor="let item of s.lista" (contextmenu)="excluir(item)">{{item.nome}} ({{item.idade}})</li>
+</ol>

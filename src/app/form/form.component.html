@@ -1,0 +1,33 @@
+<form [formGroup]="controle" (ngSubmit)="add()">
+	<div>
+		<label>Nome:</label>
+    <input formControlName="nome" maxlength="3" maxlength="8" required>
+  </div>
+  <div>
+    <label>Idade:</label>
+    <input formControlName="idade" placeholder="Somente números" maxlength="3">
+  </div>
+
+  <div *ngIf="controle.get('nome').hasError('pattern')">
+    O nome só pode ter letras e espaços
+  </div>
+  <div *ngIf="controle.get('idade').hasError('pattern')">
+    A idade com somente números
+  </div>
+  <div *ngIf="!controle.get('nome').pristine && controle.get('nome').hasError('required')">
+    O nome é obrigatório
+  </div>
+  <div *ngIf="controle.get('idade').dirty && controle.get('idade').hasError('required')">
+    A idade é obrigatória
+  </div>
+
+  <button type="submit" [disabled]="!controle.valid">Salvar</button>
+  <button type="reset">Limpar</button>
+</form>
+
+<!--
+Observações:
+- Para usar Reactive Forms temos de importar esse módulo no app.module.ts;
+- pristine: True se o usuário ainda não interagiu com o controle;
+- dirty (oposto de pristine): True se o usuário já interagiu com o controle;
+-->
